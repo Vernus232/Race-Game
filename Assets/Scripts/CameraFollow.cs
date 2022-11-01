@@ -5,15 +5,30 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    private Camera cam;
     [SerializeField] private Vector3 offset;
     [SerializeField] private Transform target;
+    [SerializeField] private Rigidbody targetRb;
     [SerializeField] private float translateSpeed;
     [SerializeField] private float rotationSpeed;
+    
 
-    private void FixedUpdate()
+    public void Start()
+    {
+        cam = FindObjectOfType<Camera>();
+    }
+
+    public void FixedUpdate()
     {
         HandleTranslation();
         HandleRotation();
+        FOVChange();
+    }
+
+    private void FOVChange()
+    {
+
+        cam.fieldOfView = 60 + Mathf.Abs(targetRb.velocity.x + targetRb.velocity.y + targetRb.velocity.z);
     }
 
     private void HandleTranslation()
