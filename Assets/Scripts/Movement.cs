@@ -33,6 +33,7 @@ public class Movement : MonoBehaviour
             rb.MoveRotation(rb.rotation * deltaRotation);
 
             rb.AddForce(-transform.right * sidewaysSpeedForce);
+            rb.AddForce(-transform.up * sidewaysSpeedForce);
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -40,6 +41,7 @@ public class Movement : MonoBehaviour
             rb.MoveRotation(rb.rotation * deltaRotation);
 
             rb.AddForce(transform.right * sidewaysSpeedForce);
+            rb.AddForce(-transform.up * sidewaysSpeedForce);
         }
     }
 }
