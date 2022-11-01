@@ -27,7 +27,6 @@ public class CameraFollow : MonoBehaviour
 
     private void FOVChange()
     {
-
         cam.fieldOfView = 60 + Mathf.Abs(targetRb.velocity.x + targetRb.velocity.y + targetRb.velocity.z);
     }
 
