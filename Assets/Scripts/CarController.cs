@@ -8,6 +8,7 @@ public class CarController : MonoBehaviour
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
+    public int stabilization;
     public int boost;
     private float horizontalInput;
     private float verticalInput;
@@ -56,8 +57,12 @@ public class CarController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            carRb.AddForce(transform.forward * boost);
+          carRb.AddForce(transform.forward * boost);
         }
+
+        carRb.AddForce(-transform.up * stabilization);
+
+
     }
 
     private void ApplyBreaking()
