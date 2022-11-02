@@ -15256,7 +15256,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.038095236, a: 0.15686275}
+      maxColor: {r: 0.96373487, g: 1, b: 0, a: 0.15686275}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -20788,7 +20788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 3, z: -10}
-  translateSpeed: 10
+  translateSpeed: 20
   rotationSpeed: 6
   fovChangeStrength: 0.1
   target: {fileID: 49237603698573699}
@@ -25857,7 +25857,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.038095236, a: 0.15686275}
+      maxColor: {r: 0.96373487, g: 1, b: 0, a: 0.15686275}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -32069,9 +32069,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nitroMaxValue: 10000
   nitroValue: 0
-  nitroPower: 50000
+  nitroPower: 100000
   nitroAddup: 10
   nitroDecrease: 100
+  incToDec: 5
   rotationStrength: 0
   breakStrengthBoost: 0
   stabilization: 0

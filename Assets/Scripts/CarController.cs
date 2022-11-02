@@ -14,6 +14,8 @@ public class CarController : MonoBehaviour
     public float nitroPower;
     public float nitroAddup;
     public float nitroDecrease;
+    [Range(1,10)]
+    public int incToDec;
     [Header ("Костыли")]
     public int rotationStrength;
     public int breakStrengthBoost;
@@ -25,6 +27,7 @@ public class CarController : MonoBehaviour
     private float currentbreakForce;
     private bool isBreaking;
     private Vector3 m_EulerAngleVelocity;
+    private bool nitroCD = false;
 
     
     [Header ("Не костыли")]
@@ -49,7 +52,7 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
-        nitroAddup = (nitroDecrease / 10);
+        nitroAddup = (nitroDecrease / incToDec);
         nitroValue = nitroMaxValue;
     }
 
@@ -124,16 +127,27 @@ public class CarController : MonoBehaviour
 
     public void Nitro()
     {
-        if (Input.GetKey(KeyCode.LeftShift) & nitroValue > 0)
+        if (nitroCD == false)
         {
-            carRb.AddForce(transform.forward * nitroPower);
-            nitroValue -= nitroDecrease;
-            ps1.Play();
-            ps2.Play();
+            if (Input.GetKey(KeyCode.LeftShift) & nitroValue > 0)
+            {
+                carRb.AddForce(transform.forward * nitroPower);
+                nitroValue -= nitroDecrease;
+                ps1.Play();
+                ps2.Play();
+            }
         }
         if (nitroValue < nitroMaxValue)
         {
             nitroValue += nitroAddup;
+        }
+        if (nitroValue <= 0)
+        {
+            nitroCD = true;
+        }
+        if (nitroValue > nitroMaxValue / 10)
+        {
+            nitroCD = false;
         }
     }
 
