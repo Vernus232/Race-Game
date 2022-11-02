@@ -8,6 +8,12 @@ public class CarController : MonoBehaviour
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
+    [Header("Нитро")]
+    public float nitroMaxValue;
+    public float nitroValue;
+    public float nitroPower;
+    public float nitroAddup;
+    public float nitroDecrease;
     [Header ("Костыли")]
     public int rotationStrength;
     public int breakStrengthBoost;
@@ -38,6 +44,14 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
+    [SerializeField] private ParticleSystem ps1;
+    [SerializeField] private ParticleSystem ps2;
+
+    private void Start()
+    {
+        nitroAddup = (nitroDecrease / 10);
+        nitroValue = nitroMaxValue;
+    }
 
     //Обновляется в фпс физики (50fps)
     private void FixedUpdate()
@@ -47,6 +61,7 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheels();
         TurnRotation();
+        Nitro();
     }
 
     //Поворот машины при повороте (По Z координате)
@@ -105,6 +120,21 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
+    }
+
+    public void Nitro()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) & nitroValue > 0)
+        {
+            carRb.AddForce(transform.forward * nitroPower);
+            nitroValue -= nitroDecrease;
+            ps1.Play();
+            ps2.Play();
+        }
+        if (nitroValue < nitroMaxValue)
+        {
+            nitroValue += nitroAddup;
+        }
     }
 
     //Поворот
