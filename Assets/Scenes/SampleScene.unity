@@ -4002,10 +4002,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 3, z: -10}
+  translateSpeed: 10
+  rotationSpeed: 6
+  fovChangeStrength: 0.5
   target: {fileID: 49237603698573699}
   targetRb: {fileID: 5626175174730293291}
-  translateSpeed: 10
-  rotationSpeed: 3
 --- !u!1 &1511454729
 GameObject:
   m_ObjectHideFlags: 0
@@ -5689,7 +5690,7 @@ GameObject:
   - component: {fileID: 5626175174730293291}
   - component: {fileID: 857159449859316538}
   m_Layer: 0
-  m_Name: Free Racing Car Red Variant
+  m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5707,9 +5708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe6276978eaf9646b1e3488172180e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationStrength: 30
   breakStrengthBoost: 11000
-  stabilization: 15000
-  boost: 15000
+  stabilization: 7000
+  boost: 12000
   motorForce: 7000
   breakForce: 7000
   maxSteerAngle: 6

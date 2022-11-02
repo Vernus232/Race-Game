@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    
     private Camera cam;
+    [Header ("Основные настройки")]
     [SerializeField] private Vector3 offset;
-    [SerializeField] private Transform target;
-    [SerializeField] private Rigidbody targetRb;
     [SerializeField] private float translateSpeed;
     [SerializeField] private float rotationSpeed;
-    
+    [Header ("Увеличение FOV")]
+    [Range(0, 3)]
+    public float fovChangeStrength;
+    [Header ("Линки")]
+    [SerializeField] private Transform target;
+    [SerializeField] private Rigidbody targetRb;
+
 
     public void Start()
     {
@@ -27,7 +33,7 @@ public class CameraFollow : MonoBehaviour
 
     private void FOVChange()
     {
-        cam.fieldOfView = 60 + Mathf.Abs(targetRb.velocity.x + targetRb.velocity.y + targetRb.velocity.z);
+        cam.fieldOfView = 60 + (Mathf.Abs(targetRb.velocity.x + targetRb.velocity.y + targetRb.velocity.z)*fovChangeStrength);
     }
 
     private void HandleTranslation()

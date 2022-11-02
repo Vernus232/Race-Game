@@ -8,6 +8,8 @@ public class CarController : MonoBehaviour
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
+    [Header ("Костыли")]
+    public int rotationStrength;
     public int breakStrengthBoost;
     public int stabilization;
     public int boost;
@@ -16,11 +18,15 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle;
     private float currentbreakForce;
     private bool isBreaking;
+    private Vector3 m_EulerAngleVelocity;
 
+    
+    [Header ("Не костыли")]
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
 
+    [Header ("Линки")]
     [SerializeField] private Rigidbody carRb;
 
     [SerializeField] private WheelCollider frontLeftWheelCollider;
@@ -33,15 +39,33 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
+    //Обновляется в фпс физики (50fps)
     private void FixedUpdate()
     {
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+        TurnRotation();
     }
 
+    //Поворот машины при повороте (По Z координате)
+    private void TurnRotation()
+    {
+        Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
+        if (Input.GetKey(KeyCode.A))
+        {
+            m_EulerAngleVelocity = new Vector3(0, 0, rotationStrength);
+            carRb.MoveRotation(carRb.rotation * deltaRotation);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            m_EulerAngleVelocity = new Vector3(0, 0, -rotationStrength);
+            carRb.MoveRotation(carRb.rotation * deltaRotation);
+        }
+    }
 
+    //Принимаем Input
     private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
@@ -49,6 +73,7 @@ public class CarController : MonoBehaviour
         isBreaking = Input.GetKey(KeyCode.Space);
     }
 
+    //Взаимодействия с мотором
     private void HandleMotor()
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
@@ -56,20 +81,24 @@ public class CarController : MonoBehaviour
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();
 
+        //Буст тормозов
         if (Input.GetKey(KeyCode.S))
         {
             carRb.AddForce(-transform.forward * breakStrengthBoost);
         }
 
+        //Буст разгона
         if (Input.GetKey(KeyCode.W))
         {
           carRb.AddForce(transform.forward * boost);
         }
 
+        //Постоянно давим на рб машины чтобы она не переворачивалась
         carRb.AddForce(-transform.up * stabilization);
 
     }
 
+    //Тормоза
     private void ApplyBreaking()
     {
         frontRightWheelCollider.brakeTorque = currentbreakForce;
@@ -78,6 +107,7 @@ public class CarController : MonoBehaviour
         rearRightWheelCollider.brakeTorque = currentbreakForce;
     }
 
+    //Поворот
     private void HandleSteering()
     {
         currentSteerAngle = maxSteerAngle * horizontalInput;
@@ -85,6 +115,7 @@ public class CarController : MonoBehaviour
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
+    //Не знаю
     private void UpdateWheels()
     {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
@@ -96,8 +127,8 @@ public class CarController : MonoBehaviour
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
         Vector3 pos;
-        Quaternion rot
-; wheelCollider.GetWorldPose(out pos, out rot);
+        Quaternion rot;
+        wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
