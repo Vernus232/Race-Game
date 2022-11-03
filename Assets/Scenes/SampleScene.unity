@@ -18466,6 +18466,10 @@ MonoBehaviour:
   translateSpeed: 20
   rotationSpeed: 6
   fovChangeStrength: 0.1
+  yVelocityCap: 20
+  translateSpeedOnCap: 5
+  rotationSpeedOnCap: 20
+  returningValue: 0.1
   target: {fileID: 49237603698573699}
   targetRb: {fileID: 5626175174730293291}
 --- !u!1 &1516965337
@@ -32238,7 +32242,7 @@ MonoBehaviour:
   nitroValue: 0
   nitroPower: 100000
   nitroDecrease: 100
-  incToDec: 3
+  incToDec: 5
   rotationStrength: 0
   breakStrengthBoost: 0
   stabilization: 0
