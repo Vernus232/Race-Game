@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class NitroCounter : MonoBehaviour
 {
-    private CarController nitroData;
-    private Text counterText;
-    private Slider counterSlider;
-    // Start is called before the first frame update
+    private CarController сarController;
+    private Text text;
+    private Slider slider;
+
+
     void Start()
     {
-        nitroData = FindObjectOfType<CarController>();
-        counterText = FindObjectOfType<Text>();
-        counterSlider = FindObjectOfType<Slider>();
+        сarController = FindObjectOfType<CarController>();
+        text = FindObjectOfType<Text>();
+        slider = FindObjectOfType<Slider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        counterText.text = nitroData.nitroValue.ToString("");
-        counterSlider.maxValue = nitroData.nitroMaxValue;
-        counterSlider.value = nitroData.nitroValue;
+        text.text = сarController.nitroValue.ToString("");
+        slider.maxValue = сarController.nitroMaxValue;
+        slider.value = сarController.nitroValue;
     }
 }
