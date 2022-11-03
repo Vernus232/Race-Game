@@ -7,8 +7,8 @@ public class CameraFollow : MonoBehaviour
 {
     
     private Camera cam;
-    private float a;
-    private float b;
+    private float translateSpeedDefault;
+    private float rotationSpeedDefault;
 
     [Header ("Main options")]
     [SerializeField] private Vector3 offset;
@@ -33,8 +33,8 @@ public class CameraFollow : MonoBehaviour
 
     public void Start()
     {
-        b = rotationSpeed;
-        a = translateSpeed;
+        rotationSpeedDefault = rotationSpeed;
+        translateSpeedDefault = translateSpeed;
         cam = FindObjectOfType<Camera>();
     }
 
@@ -49,7 +49,7 @@ public class CameraFollow : MonoBehaviour
 
     private void FOVChange()
     {
-        cam.fieldOfView = 60 + (Mathf.Abs(targetRb.velocity.x + targetRb.velocity.y + targetRb.velocity.z)*fovChangeStrength);
+        cam.fieldOfView = 60 + targetRb.velocity.magnitude * fovChangeStrength;
     }
 
     private void HandleTranslation()
@@ -70,7 +70,7 @@ public class CameraFollow : MonoBehaviour
         {
             translateSpeed = translateSpeedOnCap;
         }
-        if (targetRb.velocity.y < yVelocityCap & translateSpeed < a)
+        if (targetRb.velocity.y < yVelocityCap & translateSpeed < translateSpeedDefault)
         {
             translateSpeed += returningValue;
         }
@@ -81,7 +81,7 @@ public class CameraFollow : MonoBehaviour
         {
             rotationSpeed = rotationSpeedOnCap;
         }
-        if (targetRb.velocity.y < yVelocityCap & rotationSpeed > b)
+        if (targetRb.velocity.y < yVelocityCap & rotationSpeed > rotationSpeedDefault)
         {
             rotationSpeed -= returningValue;
         }
