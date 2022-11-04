@@ -15,6 +15,7 @@ private void Start()
     // Update is called once per frame
     void FixedUpdate()
     {
-        text.text = rb.velocity.magnitude.ToString("00");
+        float speedInKpH = rb.velocity.magnitude * 3.6f;
+        text.text = speedInKpH.ToString("00 km/h");
     }
 }
