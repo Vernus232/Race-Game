@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class NitroCounter : MonoBehaviour
 {
     private CarController сarController;
-    private Text text;
+    [SerializeField] private Text text;
     private Slider slider;
 
 
     void Start()
     {
         сarController = FindObjectOfType<CarController>();
-        text = FindObjectOfType<Text>();
         slider = FindObjectOfType<Slider>();
     }
 
