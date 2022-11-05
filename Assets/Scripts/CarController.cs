@@ -135,6 +135,8 @@ public class CarController : MonoBehaviour
                 nitroValue -= nitroDecrease;
                 ps1.Play();
                 ps2.Play();
+                ps3.Play();
+                ps4.Play();
             }
         }
         if (nitroValue < nitroMaxValue)
