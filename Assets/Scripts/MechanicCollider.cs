@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MechanicCollider : MonoBehaviour
 {
+    public Text text;
     [SerializeField] private GameObject car;
     private Mechanic mechanic;
     // Start is called before the first frame update
@@ -16,18 +18,18 @@ public class MechanicCollider : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            text.gameObject.SetActive(true);
             StartCoroutine(Wait());
         }
     }
     private void OnTriggerExit(Collider collider)
     {
         StopAllCoroutines();
+        text.gameObject.SetActive(false);
     }
 
     IEnumerator Wait()
     {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-    
         yield return new WaitForSeconds(2);
 
         mechanic.isCarEnteredCollision = true;

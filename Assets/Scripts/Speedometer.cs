@@ -6,12 +6,10 @@ using UnityEngine.UI;
 public class Speedometer : MonoBehaviour
 {
     [SerializeField] private Text text;
+    
     [SerializeField] private Rigidbody rb;
 
-private void Start() 
-{
-    text = FindObjectOfType<Text>();
-}
+
     // Update is called once per frame
     void FixedUpdate()
     {

@@ -31,9 +31,9 @@ public class CarController : MonoBehaviour
 
     
     [Header ("Options")]
-    [SerializeField] private float motorForce;
-    [SerializeField] private float breakForce;
-    [SerializeField] private float maxSteerAngle;
+    public float motorForce;
+    public float breakForce;
+    public float maxSteerAngle;
 
     [Header ("Links")]
     [SerializeField] private Rigidbody carRb;
