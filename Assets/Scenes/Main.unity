@@ -48720,13 +48720,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504473252}
-  m_LocalRotation: {x: -0, y: 0.026879799, z: -0, w: 0.9996387}
-  m_LocalPosition: {x: -3.0382855, y: 18.7, z: -38.369766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.49, y: 6.11, z: -14.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 3.081, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &1504473254
 AudioListener:
   m_ObjectHideFlags: 0
@@ -48790,9 +48790,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417f16fbfe7f81e43a87ab174436b9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 3, z: -10}
-  translateSpeed: 20
-  rotationSpeed: 6
+  offset: {x: 0, y: 3, z: -7}
+  translateSpeed: 60
+  rotationSpeed: 10
   fovChangeStrength: 0.1
   yVelocityCap: 20
   translateSpeedOnCap: 5
@@ -70432,7 +70432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6313355243058407476, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.05
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6313355243058407476, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -70478,5 +70478,25 @@ PrefabInstance:
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 1122065101}
+    - target: {fileID: 6313355243568013000, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313355243597743477, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313355243597743478, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.158
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313355243597743479, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
+      propertyPath: m_Name
+      value: Rotation Inertia
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313355243597743479, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea8913a046c5aa4b887ab2c5fc4844b, type: 3}
