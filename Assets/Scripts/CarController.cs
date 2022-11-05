@@ -10,7 +10,7 @@ public class CarController : MonoBehaviour
 
     [Header("Nitro")]
     public float nitroMaxValue;
-    public float nitroValue;
+    [HideInInspector] public float nitroValue;
     public float nitroPower;
     private float nitroAddup;
     public float nitroDecrease;
