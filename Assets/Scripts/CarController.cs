@@ -56,6 +56,15 @@ public class CarController : MonoBehaviour
     {
         nitroAddup = (nitroDecrease / incToDec);
         nitroValue = nitroMaxValue;
+        
+        if (GlobalCarData.isFirstLoad)
+        {
+            SaveCarSettings();
+        }
+        else 
+        {
+            LoadCarSettings();
+        }
     }
 
     // physics update (50fps)
@@ -177,5 +186,24 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    public void SaveCarSettings()
+    {
+        GlobalCarData.motorForce = motorForce;
+        GlobalCarData.breakForce = breakForce;
+        GlobalCarData.maxSteerAngle = maxSteerAngle;
+        GlobalCarData.nitroMaxValue = nitroMaxValue;
+        GlobalCarData.nitroPower = nitroPower;
+        GlobalCarData.nitroDecrease = nitroDecrease;
+    }
+    public void LoadCarSettings()
+    {
+        motorForce = GlobalCarData.motorForce;
+        breakForce = GlobalCarData.breakForce;
+        maxSteerAngle = GlobalCarData.maxSteerAngle;
+        nitroMaxValue = GlobalCarData.nitroMaxValue;
+        nitroPower = GlobalCarData.nitroPower;
+        nitroDecrease = GlobalCarData.nitroDecrease;
     }
 }

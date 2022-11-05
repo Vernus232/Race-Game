@@ -19,7 +19,10 @@ public class MechanicScene : MonoBehaviour
 
     private int indx;
 
-
+    private void Start()
+    {
+        GlobalCarData.isFirstLoad = false;
+    }
     
     public void ExitMechanic()
     {
@@ -55,20 +58,21 @@ public class MechanicScene : MonoBehaviour
     {
         if (indx == 1) 
         {
-            car.nitroPower = int.Parse(inputField.text);
+            GlobalCarData.nitroPower = int.Parse(inputField.text);
         }
         if (indx == 2) 
         {
-            car.nitroMaxValue = int.Parse(inputField.text);
+            GlobalCarData.nitroMaxValue = int.Parse(inputField.text);
         }
         if (indx == 3) 
         {
-            car.motorForce = int.Parse(inputField.text);
+            GlobalCarData.motorForce = int.Parse(inputField.text);
         }
         if (indx == 4) 
         {
-            car.breakForce = int.Parse(inputField.text);
+            GlobalCarData.breakForce = int.Parse(inputField.text);
         }
         inputField.gameObject.SetActive(false);
     }
+    
 }
