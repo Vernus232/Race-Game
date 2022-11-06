@@ -47,10 +47,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
-    [SerializeField] private ParticleSystem ps1;
-    [SerializeField] private ParticleSystem ps2;
-    [SerializeField] private ParticleSystem ps3;
-    [SerializeField] private ParticleSystem ps4;
+    [SerializeField] private ParticleSystem[] nitroParticleSystems;
 
     private void Start()
     {
@@ -142,10 +139,10 @@ public class CarController : MonoBehaviour
             {
                 carRb.AddForce(transform.forward * nitroPower);
                 nitroValue -= nitroDecrease;
-                ps1.Play();
-                ps2.Play();
-                ps3.Play();
-                ps4.Play();
+                foreach (ParticleSystem nitroParticleSystem in nitroParticleSystems)
+                {
+                    nitroParticleSystem.Play();
+                }
             }
         }
         if (nitroValue < nitroMaxValue)

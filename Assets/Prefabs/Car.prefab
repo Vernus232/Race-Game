@@ -10518,10 +10518,11 @@ MonoBehaviour:
   frontRightWheeTransform: {fileID: 6313355241795680235}
   rearLeftWheelTransform: {fileID: 6313355242899477220}
   rearRightWheelTransform: {fileID: 6313355241965024559}
-  ps1: {fileID: 6313355241950540792}
-  ps2: {fileID: 6313355243314162576}
-  ps3: {fileID: 6313355242242310218}
-  ps4: {fileID: 6313355243223938442}
+  nitroParticleSystems:
+  - {fileID: 6313355241950540792}
+  - {fileID: 6313355243314162576}
+  - {fileID: 6313355242242310218}
+  - {fileID: 6313355243223938442}
 --- !u!138 &6313355243058407475
 FixedJoint:
   m_ObjectHideFlags: 0
