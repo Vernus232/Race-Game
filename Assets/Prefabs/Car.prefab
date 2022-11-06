@@ -10506,7 +10506,7 @@ MonoBehaviour:
   breakStrengthBoost: 0
   stabilization: 0
   boost: 0
-  motorForce: 5000
+  motorForce: 6000
   breakForce: 9999999
   maxSteerAngle: 30
   carRb: {fileID: 6313355243058407477}
