@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class GlobalCarData
 {
+    //Index
+    public static int carIndex;
+
     //Main
     public static float motorForce;
     public static float breakForce;

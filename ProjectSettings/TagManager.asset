@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - MechanicTrigger
+  - NPC
+  - Speedometer
   layers:
   - Default
   - TransparentFX

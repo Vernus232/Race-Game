@@ -36,6 +36,8 @@ public class CameraFollow : MonoBehaviour
         rotationSpeedDefault = rotationSpeed;
         translateSpeedDefault = translateSpeed;
         cam = FindObjectOfType<Camera>();
+        target = FindObjectOfType<CarController>().transform;
+        targetRb = FindObjectOfType<Rigidbody>(CompareTag("Player"));
     }
 
     public void FixedUpdate()

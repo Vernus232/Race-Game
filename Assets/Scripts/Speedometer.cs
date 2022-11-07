@@ -9,6 +9,11 @@ public class Speedometer : MonoBehaviour
     
     [SerializeField] private Rigidbody rb;
 
+    private void Start()
+    {
+        text = FindObjectOfType<Text>(CompareTag("Speedometer"));
+        //rb = FindObjectOfType<CarController>(CompareTag("Player")).GetComponent<Rigidbody>();
+    }
 
     // Update is called once per frame
     void FixedUpdate()

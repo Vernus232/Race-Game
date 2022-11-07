@@ -18,10 +18,12 @@ public class MechanicScene : MonoBehaviour
     public InputField inputField;
 
     private int indx;
+    public CarController[] cars;
 
     private void Start()
     {
         GlobalCarData.isFirstLoad = false;
+        CarSwitch(GlobalCarData.carIndex);
     }
     
     public void ExitMechanic()
@@ -74,5 +76,32 @@ public class MechanicScene : MonoBehaviour
         }
         inputField.gameObject.SetActive(false);
     }
+
+
+    public void NextCar()
+    {
+        GlobalCarData.carIndex += 1;
+        CarSwitch(GlobalCarData.carIndex);
+    }
+    public void PastCar()
+    {
+        GlobalCarData.carIndex -= 1;
+        CarSwitch(GlobalCarData.carIndex);
+    }
+    public void CarSwitch(int index)
+    {
+        foreach (CarController ccar in cars)
+        {
+            if (ccar.carIndex == index)
+            {
+                ccar.gameObject.SetActive(true);
+            }
+            else
+            {
+                ccar.gameObject.SetActive(false);
+            }
+        }
+    }
+    
     
 }

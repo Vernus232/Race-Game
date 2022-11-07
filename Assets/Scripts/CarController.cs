@@ -8,6 +8,8 @@ public class CarController : MonoBehaviour
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
+    public int carIndex;
+
     [Header("Nitro")]
     public float nitroMaxValue;
     [HideInInspector] public float nitroValue;
@@ -48,18 +50,17 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
     [SerializeField] private ParticleSystem[] nitroParticleSystems;
-
     private void Start()
     {
         nitroAddup = (nitroDecrease / incToDec);
         nitroValue = nitroMaxValue;
         
         if (GlobalCarData.isFirstLoad)
-        {
+        {   
             SaveCarSettings();
         }
         else 
-        {
+        {   
             LoadCarSettings();
         }
     }
@@ -203,4 +204,5 @@ public class CarController : MonoBehaviour
         nitroPower = GlobalCarData.nitroPower;
         nitroDecrease = GlobalCarData.nitroDecrease;
     }
+ 
 }
