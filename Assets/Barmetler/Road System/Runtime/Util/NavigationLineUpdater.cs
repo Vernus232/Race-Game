@@ -50,7 +50,7 @@ namespace Barmetler.RoadSystem
 			LineUtility.Simplify(points.ToList(), Tolerance, points);
 
 			return points.Select(e =>
-				Vector3.Scale(e, Vector3.forward + Vector3.right) + Vector3.up * 50
+				Vector3.Scale(e, Vector3.forward + Vector3.right) + Vector3.up * 5
 			).ToArray();
 		}
 	}
