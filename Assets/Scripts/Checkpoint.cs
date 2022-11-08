@@ -6,10 +6,12 @@ public class Checkpoint : MonoBehaviour
 {
     public bool checkpointPassed = false;
     [SerializeField] private Collider carCollision;
+    [SerializeField] private RaceParameters raceParameters;
 
     private void Start()
     {
         carCollision = FindObjectOfType<CarController>(CompareTag("Player")).GetComponentInChildren<Collider>();
+        raceParameters = FindObjectOfType<RaceParameters>();
     }
     void OnDrawGizmosSelected()
     {
@@ -20,5 +22,7 @@ public class Checkpoint : MonoBehaviour
     private void OnTriggerEnter(Collider carCollision)
     {
         checkpointPassed = true;
+        raceParameters.RaceManager();
+        raceParameters.CheckpointManager();
     }
 }

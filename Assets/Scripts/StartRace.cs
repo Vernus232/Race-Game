@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class StartRace : MonoBehaviour
 {
+    public bool raceStartActivated = false;
     public bool lapPassed = false;
     [SerializeField] private Collider carCollision;
+    [SerializeField] private RaceParameters raceParameters;
 
     private void Start()
     {
         carCollision = FindObjectOfType<CarController>(CompareTag("Player")).GetComponentInChildren<Collider>();
+        raceParameters = FindObjectOfType<RaceParameters>();
     }
     void OnDrawGizmosSelected()
     {
@@ -18,6 +21,15 @@ public class StartRace : MonoBehaviour
     }
     private void OnTriggerEnter(Collider carCollision)
     {
-        lapPassed = true;
+        if (raceStartActivated == true)
+        {
+            lapPassed = true;
+            raceParameters.RaceManager();
+        }
+        if (raceStartActivated == false)
+        {
+            raceStartActivated = true;
+            raceParameters.RaceManager();
+        }
     }
 }

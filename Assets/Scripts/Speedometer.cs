@@ -11,8 +11,12 @@ public class Speedometer : MonoBehaviour
 
     private void Start()
     {
+        //FindCar(GlobalCarData.carIndex);
+    }
+    public void FindCar(int carIndex)
+    {
         text = FindObjectOfType<Text>(CompareTag("Speedometer"));
-        //rb = FindObjectOfType<CarController>(CompareTag("Player")).GetComponent<Rigidbody>();
+        //rb = FindObjectOfType<CarController>(carIndex == GlobalCarData.carIndex).GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

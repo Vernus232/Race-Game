@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarManagment : MonoBehaviour
 {
     [SerializeField] private CarController[] cars;
+    [SerializeField] private Speedometer speedometer;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class CarManagment : MonoBehaviour
         else 
         {   
             CarLoad(GlobalCarData.carIndex);
+            //speedometer.FindCar(GlobalCarData.carIndex);
         }
     }
     public void CarLoad(int index)
