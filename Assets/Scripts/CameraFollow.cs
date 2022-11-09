@@ -51,7 +51,7 @@ public class CameraFollow : MonoBehaviour
 
     private void FOVChange()
     {
-        cam.fieldOfView = 50 + targetRb.velocity.magnitude * fovChangeStrength;
+        cam.fieldOfView = 63 + targetRb.velocity.magnitude * fovChangeStrength;
     }
 
     private void HandleTranslation()
