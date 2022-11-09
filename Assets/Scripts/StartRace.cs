@@ -7,12 +7,12 @@ public class StartRace : MonoBehaviour
     public bool raceStartActivated = false;
     public bool lapPassed = false;
     [SerializeField] private Collider carCollision;
-    [SerializeField] private RaceParameters raceParameters;
+    [SerializeField] private RaceManager raceParameters;
 
     private void Start()
     {
         carCollision = FindObjectOfType<CarController>(CompareTag("Player")).GetComponentInChildren<Collider>();
-        raceParameters = FindObjectOfType<RaceParameters>();
+        raceParameters = FindObjectOfType<RaceManager>();
     }
     void OnDrawGizmosSelected()
     {
@@ -23,13 +23,14 @@ public class StartRace : MonoBehaviour
     {
         if (raceStartActivated == true)
         {
+            raceParameters.ResetCheckpoints();
             lapPassed = true;
-            raceParameters.RaceManager();
+            raceParameters.UpdateRaceParameters();
         }
         if (raceStartActivated == false)
         {
             raceStartActivated = true;
-            raceParameters.RaceManager();
+            raceParameters.UpdateRaceParameters();
         }
     }
 }

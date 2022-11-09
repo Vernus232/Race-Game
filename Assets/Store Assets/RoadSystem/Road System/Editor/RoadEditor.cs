@@ -654,7 +654,8 @@ namespace Barmetler.RoadSystem
 
 		static Rect windowRect = new Rect(10000, 10000, 300, 300);
 
-		void GUIDrawWindow()
+        [Obsolete]
+        void GUIDrawWindow()
 		{
 			// only enable when a point can be selected
 			switch (Tools.current)

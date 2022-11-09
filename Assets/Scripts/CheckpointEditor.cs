@@ -3,8 +3,8 @@ using UnityEditor;
 using System.Collections;
 using UnityEditor.EditorTools;
 
-[EditorTool("Race Editor",typeof(Checkpoint))]
-public class RaceSystem : EditorTool
+[EditorTool("Checkpoint Editor",typeof(Checkpoint))]
+public class CheckpointEditor : EditorTool
 {
     public Texture2D toolIcon;
     public override GUIContent toolbarIcon

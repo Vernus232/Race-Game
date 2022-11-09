@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RaceParameters : MonoBehaviour
+public class RaceManager : MonoBehaviour
 {
     public int currentCheckpointIndex = 0;
     public int laps;
+    private int lapsLeft;
     public bool raceStarted = false;
     public bool racePassed = false;
     public Checkpoint[] checkpoints;
@@ -16,39 +17,57 @@ public class RaceParameters : MonoBehaviour
     [SerializeField] private Text winText;
     [SerializeField] private Text checkpointCounter;
 
-    public void RaceManager()
+    private void Start() 
+    {
+        lapsLeft = laps;
+    }
+
+    public void UpdateRaceParameters()
     {
         foreach (Checkpoint checkpoint in checkpoints)
         {
-            if (start.raceStartActivated)
+            SmallMethod1(checkpoint);
+        }
+    }
+
+    private void SmallMethod1(Checkpoint checkpoint)
+    {
+        if (start.raceStartActivated)
+        {
+            raceStarted = true;
+            checkpointCounter.gameObject.SetActive(true);
+            RaceUI.gameObject.SetActive(true);
+            if (checkpoint.checkpointPassed)
             {
-                raceStarted = true;
-                checkpointCounter.gameObject.SetActive(true);
-                RaceUI.gameObject.SetActive(true);
-                if (checkpoint.checkpointPassed)
+                if (lapsLeft > 1 & start.lapPassed)
                 {
-                    if (laps > 1 & start.lapPassed)
-                    {
-                        currentCheckpointIndex = 0;
-                        UpdateCheckpoints();
-                        checkpoint.checkpointPassed = false;
-                        laps -= 1;
-                        start.lapPassed = false;
-                    }
-                    if (laps == 1 & start.lapPassed)
-                    {
-                        raceStarted = false;
-                        racePassed = true;
-                        winText.gameObject.SetActive(true);
-                    }
+                    currentCheckpointIndex = 0;
+                    UpdateCheckpoints();
+                    checkpoint.checkpointPassed = false;
+                    lapsLeft -= 1;
+                    start.lapPassed = false;
+                }
+                if (lapsLeft == 1 & start.lapPassed)
+                {
+                    raceStarted = false;
+                    racePassed = true;
+                    winText.gameObject.SetActive(true);
                 }
             }
-            if (currentCheckpointIndex == 0)
-            {
-                checkpoint.gameObject.SetActive(false);
-                start.gameObject.SetActive(false);
-                UpdateCheckpoints();
-            }
+        }
+        if (currentCheckpointIndex == 0)
+        {
+            checkpoint.gameObject.SetActive(false);
+            start.gameObject.SetActive(false);
+            UpdateCheckpoints();
+        }
+    }
+
+    public void ResetCheckpoints()
+    {
+        foreach (Checkpoint checkpoint in checkpoints)
+        {
+            checkpoint.checkpointPassed = false;
         }
     }
 
