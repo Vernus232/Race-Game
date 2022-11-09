@@ -37,8 +37,6 @@ public class RaceManager : MonoBehaviour
             raceStarted = true;
             checkpointCounter.gameObject.SetActive(true);
             RaceUI.gameObject.SetActive(true);
-            if (checkpoint.checkpointPassed)
-            {
                 if (lapsLeft > 1 & start.lapPassed)
                 {
                     currentCheckpointIndex = 0;
@@ -52,10 +50,10 @@ public class RaceManager : MonoBehaviour
                     raceStarted = false;
                     racePassed = true;
                     winText.gameObject.SetActive(true);
+                    TurnOffCheckpoints();
                 }
-            }
         }
-        if (currentCheckpointIndex == 0)
+        if (currentCheckpointIndex == 0 & racePassed == false)
         {
             checkpoint.gameObject.SetActive(false);
             start.gameObject.SetActive(false);
@@ -68,6 +66,9 @@ public class RaceManager : MonoBehaviour
         foreach (Checkpoint checkpoint in checkpoints)
         {
             checkpoint.checkpointPassed = false;
+            currentCheckpointIndex = 0;
+            UpdateCheckpoints();
+            SmallMethod1(checkpoint);
         }
     }
 
@@ -91,6 +92,14 @@ public class RaceManager : MonoBehaviour
                 checkpoints[currentCheckpointIndex].gameObject.SetActive(false);
             }
             checkpointCounter.text = (currentCheckpointIndex.ToString("Current Checkpoint : 0"));
+        }
+    }
+
+    private void TurnOffCheckpoints()
+    {
+        foreach (Checkpoint checkpoint in checkpoints)
+        {
+            checkpoint.gameObject.SetActive(false);
         }
     }
 }
