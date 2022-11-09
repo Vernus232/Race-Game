@@ -118,7 +118,6 @@ public class MechanicScene : MonoBehaviour
     }
     public void CarSwitch(int index)
     {
-        print(GlobalCarData.carIndex);
         foreach (CarController ccar in cars)
         {
             if (ccar.carIndex == index)
