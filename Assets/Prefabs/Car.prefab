@@ -106,9 +106,9 @@ WheelCollider:
   m_Radius: 0.37
   m_SuspensionSpring:
     spring: 35000
-    damper: 4500
+    damper: 3500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.6
   m_ForceAppPointDistance: 1
   m_Mass: 40
   m_WheelDampingRate: 1
@@ -167,9 +167,9 @@ WheelCollider:
   m_Radius: 0.37
   m_SuspensionSpring:
     spring: 35000
-    damper: 4500
+    damper: 3500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.6
   m_ForceAppPointDistance: 1
   m_Mass: 40
   m_WheelDampingRate: 1
@@ -10333,7 +10333,7 @@ WheelCollider:
   m_Radius: 0.37
   m_SuspensionSpring:
     spring: 35000
-    damper: 4500
+    damper: 3500
     targetPosition: 0.5
   m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 1
@@ -10461,11 +10461,10 @@ Transform:
   m_GameObject: {fileID: 6313355243058407479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.05, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 6313355243254238606}
   - {fileID: 6313355243530491253}
-  - {fileID: 6313355243568012999}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10492,23 +10491,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6313355243058407479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe6276978eaf9646b1e3488172180e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carIndex: 3
-  nitroMaxValue: 5000
+  carIndex: 1
+  nitroMaxValue: 7000
   nitroValue: 0
   nitroPower: 20000
   nitroDecrease: 100
-  incToDec: 5
+  incToDec: 4
   rotationStrength: 0
   breakStrengthBoost: 0
   stabilization: 0
   boost: 0
   motorForce: 4000
-  breakForce: 2000
+  breakForce: 3000
   maxSteerAngle: 30
   carRb: {fileID: 6313355243058407477}
   frontLeftWheelCollider: {fileID: 6313355241643216768}
@@ -15409,7 +15408,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 104696f8b5f23d24586d858b68916bdc, type: 2}
+  - {fileID: 2100000, guid: 07f44fe3e9c462146a7769b976c50ec4, type: 2}
   - {fileID: 2100000, guid: ab035d7682921704a9015ac353311d57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -15443,8 +15442,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8500001, y: 0.93, z: 3.888865}
-  m_Center: {x: -5.4478422e-11, y: 0.85, z: -0.24454434}
+  m_Size: {x: 1.8500001, y: 0.93, z: 3.5255718}
+  m_Center: {x: 0, y: 0.8500001, z: -0.06289768}
 --- !u!1 &6313355243314162577
 GameObject:
   m_ObjectHideFlags: 0
@@ -20362,89 +20361,6 @@ Transform:
   m_Father: {fileID: 6313355243058407476}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6313355243568013000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6313355243568012999}
-  - component: {fileID: 6313355243568012996}
-  - component: {fileID: 6313355243568012997}
-  m_Layer: 0
-  m_Name: Camera Angle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6313355243568012999
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6313355243568013000}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.893, y: 0.59, z: 0.021}
-  m_LocalScale: {x: 0.66666657, y: 1, z: 0.66666657}
-  m_Children: []
-  m_Father: {fileID: 6313355243058407476}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!20 &6313355243568012996
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6313355243568013000}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &6313355243568012997
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6313355243568013000}
-  m_Enabled: 1
 --- !u!1 &6313355243597743479
 GameObject:
   m_ObjectHideFlags: 0
@@ -20585,7 +20501,7 @@ WheelCollider:
   m_Radius: 0.37
   m_SuspensionSpring:
     spring: 35000
-    damper: 4500
+    damper: 3500
     targetPosition: 0.5
   m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 1

@@ -4924,7 +4924,7 @@ Transform:
   m_GameObject: {fileID: 642287924342879162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4466888475822015697}
   - {fileID: 6399581921715410368}
@@ -4959,18 +4959,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe6276978eaf9646b1e3488172180e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carIndex: 4
-  nitroMaxValue: 5000
+  carIndex: 2
+  nitroMaxValue: 6000
   nitroValue: 0
   nitroPower: 10000
   nitroDecrease: 100
-  incToDec: 5
+  incToDec: 4
   rotationStrength: 0
   breakStrengthBoost: 0
   stabilization: 0
   boost: 0
   motorForce: 3000
-  breakForce: 1250
+  breakForce: 2500
   maxSteerAngle: 20
   carRb: {fileID: 5135156708204615449}
   frontLeftWheelCollider: {fileID: 2239677824950174677}
@@ -5223,7 +5223,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.6
   m_ForceAppPointDistance: 1
   m_Mass: 40
   m_WheelDampingRate: 1
@@ -10120,7 +10120,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.6
   m_ForceAppPointDistance: 1
   m_Mass: 40
   m_WheelDampingRate: 1

@@ -23,6 +23,6 @@ public class Checkpoint : MonoBehaviour
     {
         checkpointPassed = true;
         raceParameters.RaceManager();
-        raceParameters.CheckpointManager();
+        raceParameters.UpdateCheckpoints();
     }
 }

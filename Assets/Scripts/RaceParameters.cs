@@ -30,7 +30,7 @@ public class RaceParameters : MonoBehaviour
                     if (laps > 1 & start.lapPassed)
                     {
                         currentCheckpointIndex = 0;
-                        CheckpointManager();
+                        UpdateCheckpoints();
                         checkpoint.checkpointPassed = false;
                         laps -= 1;
                         start.lapPassed = false;
@@ -47,15 +47,15 @@ public class RaceParameters : MonoBehaviour
             {
                 checkpoint.gameObject.SetActive(false);
                 start.gameObject.SetActive(false);
-                CheckpointManager();
+                UpdateCheckpoints();
             }
         }
     }
 
-    public void CheckpointManager()
+    public void UpdateCheckpoints()
     {
         if (currentCheckpointIndex == 0)
-        {
+        { 
             checkpoints[currentCheckpointIndex].gameObject.SetActive(true);
         }
         if (checkpoints[currentCheckpointIndex].checkpointPassed)
