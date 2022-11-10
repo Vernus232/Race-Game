@@ -26,5 +26,6 @@ public class Checkpoint : MonoBehaviour
         raceParameters.UpdateRaceParameters();
         raceParameters.UpdateCheckpoints();
         raceParameters.UpdateUI();
+        raceParameters.UpdateTimerView();
     }
 }

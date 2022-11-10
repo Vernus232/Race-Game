@@ -21,7 +21,7 @@ public class StartRace : MonoBehaviour
     }
     private void OnTriggerEnter(Collider carCollision)
     {
-        if (raceStartActivated == true)
+        if (raceStartActivated)
         {
             raceParameters.ResetCheckpoints();
             lapPassed = true;

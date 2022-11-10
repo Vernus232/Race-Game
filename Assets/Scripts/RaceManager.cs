@@ -109,7 +109,9 @@ public class RaceManager : MonoBehaviour
         if (racePassed == true)
         {
             winText.gameObject.SetActive(true);
-            UICloseTimer();
+            StopAllCoroutines();
+            StartCoroutine(UICloseTimer());
+            timeLeft = 0;
         }
     }
     
@@ -131,7 +133,7 @@ public class RaceManager : MonoBehaviour
         checkpointCounter.gameObject.SetActive(true);
         RaceUI.gameObject.SetActive(true);
         lapCounter.gameObject.SetActive(true);
-
+        timerView.gameObject.SetActive(true);
     }
 
     private IEnumerator UICloseTimer()
@@ -148,7 +150,7 @@ public class RaceManager : MonoBehaviour
         }
     }
 
-    private IEnumerator RaceTimer()
+    public IEnumerator RaceTimer()
     {
         while (timeLeft > 0)
         {
@@ -166,6 +168,10 @@ public class RaceManager : MonoBehaviour
     private void RaceLost()
     {
         defeatText.gameObject.SetActive(true);
-        UICloseTimer();
+        StopCoroutine(RaceTimer());
+        TurnOffCheckpoints();
+        start.gameObject.SetActive(true);
+        timeLeft = timeOnStart;
+        StartCoroutine(UICloseTimer());
     }
 }
