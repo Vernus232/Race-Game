@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class StartRace : MonoBehaviour
 {
-    public bool raceStartActivated = false;
-    public bool lapPassed = false;
+    public float timeForThisCheckpoint;
+    [HideInInspector] public bool raceStartActivated = false;
+    [HideInInspector] public bool lapPassed = false;
     [SerializeField] private Collider carCollision;
     [SerializeField] private RaceManager raceParameters;
 
     private void Start()
     {
         carCollision = FindObjectOfType<CarController>(CompareTag("Player")).GetComponentInChildren<Collider>();
-        raceParameters = FindObjectOfType<RaceManager>();
     }
     void OnDrawGizmosSelected()
     {
@@ -30,7 +30,11 @@ public class StartRace : MonoBehaviour
         if (raceStartActivated == false)
         {
             raceStartActivated = true;
+            raceParameters.StartTimer();
             raceParameters.UpdateRaceParameters();
         }
+        raceParameters.UpdateUI();
+        raceParameters.timeLeft += timeForThisCheckpoint;
+        raceParameters.UpdateTimerView();
     }
 }

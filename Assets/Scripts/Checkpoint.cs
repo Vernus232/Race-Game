@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    public bool checkpointPassed = false;
+    public float timeForThisCheckpoint;
+    [HideInInspector] public bool checkpointPassed = false;
     [SerializeField] private Collider carCollision;
     [SerializeField] private RaceManager raceParameters;
 
     private void Start()
     {
         carCollision = FindObjectOfType<CarController>(CompareTag("Player")).GetComponentInChildren<Collider>();
-        raceParameters = FindObjectOfType<RaceManager>();
     }
     void OnDrawGizmosSelected()
     {
@@ -22,7 +22,9 @@ public class Checkpoint : MonoBehaviour
     private void OnTriggerEnter(Collider carCollision)
     {
         checkpointPassed = true;
+        raceParameters.timeLeft += timeForThisCheckpoint;
         raceParameters.UpdateRaceParameters();
         raceParameters.UpdateCheckpoints();
+        raceParameters.UpdateUI();
     }
 }

@@ -5,52 +5,58 @@ using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour
 {
-    public int currentCheckpointIndex = 0;
+    [HideInInspector] public int currentCheckpointIndex = 0;
     public int laps;
     private int lapsLeft;
-    public bool raceStarted = false;
-    public bool racePassed = false;
+    [HideInInspector] public bool raceStarted = false;
+    [HideInInspector] public bool racePassed = false;
     public Checkpoint[] checkpoints;
+    public float timeOnStart;
+    public float timeLeft;
     public StartRace start;
     [SerializeField] private Collision carCollision;
     [SerializeField] private Image RaceUI;
     [SerializeField] private Text winText;
+    [SerializeField] private Text defeatText;
     [SerializeField] private Text checkpointCounter;
+    [SerializeField] private Text lapCounter;
+    [SerializeField] private Text timerView;
 
     private void Start() 
     {
         lapsLeft = laps;
+        timeLeft = timeOnStart;
     }
 
     public void UpdateRaceParameters()
     {
         foreach (Checkpoint checkpoint in checkpoints)
         {
-            SmallMethod1(checkpoint);
+            UpdateRaceParameters(checkpoint);
         }
     }
 
-    private void SmallMethod1(Checkpoint checkpoint)
+    private void UpdateRaceParameters(Checkpoint checkpoint)
     {
         if (start.raceStartActivated)
         {
             raceStarted = true;
-            checkpointCounter.gameObject.SetActive(true);
-            RaceUI.gameObject.SetActive(true);
+            OpenUI();
                 if (lapsLeft > 1 & start.lapPassed)
                 {
                     currentCheckpointIndex = 0;
                     UpdateCheckpoints();
                     checkpoint.checkpointPassed = false;
                     lapsLeft -= 1;
+                    UpdateUI();
                     start.lapPassed = false;
                 }
                 if (lapsLeft == 1 & start.lapPassed)
                 {
                     raceStarted = false;
                     racePassed = true;
-                    winText.gameObject.SetActive(true);
                     TurnOffCheckpoints();
+                    UpdateUI();
                 }
         }
         if (currentCheckpointIndex == 0 & racePassed == false)
@@ -68,7 +74,7 @@ public class RaceManager : MonoBehaviour
             checkpoint.checkpointPassed = false;
             currentCheckpointIndex = 0;
             UpdateCheckpoints();
-            SmallMethod1(checkpoint);
+            UpdateRaceParameters(checkpoint);
         }
     }
 
@@ -90,9 +96,48 @@ public class RaceManager : MonoBehaviour
             {
                 start.gameObject.SetActive(true);
                 checkpoints[currentCheckpointIndex].gameObject.SetActive(false);
+                currentCheckpointIndex += 1;
             }
-            checkpointCounter.text = (currentCheckpointIndex.ToString("Current Checkpoint : 0"));
         }
+    }
+
+    public void UpdateUI()
+    {
+        checkpointCounter.text = currentCheckpointIndex.ToString("Current Checkpoint : 0");
+        lapCounter.text = lapsLeft.ToString("Laps 0");
+
+        if (racePassed == true)
+        {
+            winText.gameObject.SetActive(true);
+            UICloseTimer();
+        }
+    }
+    
+    public void UpdateTimerView()
+    {
+        timerView.text = timeLeft.ToString("Time : 0.00"); 
+    }
+
+    private void CloseUI()
+    {
+        winText.gameObject.SetActive(false);
+        checkpointCounter.gameObject.SetActive(false);
+        RaceUI.gameObject.SetActive(false);
+        timerView.gameObject.SetActive(false);
+    }
+
+    private void OpenUI()
+    {
+        checkpointCounter.gameObject.SetActive(true);
+        RaceUI.gameObject.SetActive(true);
+        lapCounter.gameObject.SetActive(true);
+
+    }
+
+    private IEnumerator UICloseTimer()
+    {
+        yield return new WaitForSeconds(5);
+        CloseUI();
     }
 
     private void TurnOffCheckpoints()
@@ -101,5 +146,26 @@ public class RaceManager : MonoBehaviour
         {
             checkpoint.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator RaceTimer()
+    {
+        while (timeLeft > 0)
+        {
+            yield return new WaitForSeconds(1);
+            timeLeft -= 1;
+            UpdateTimerView();
+        }
+        RaceLost();
+    }
+
+    public void StartTimer()
+    {
+        StartCoroutine(RaceTimer());
+    }
+    private void RaceLost()
+    {
+        defeatText.gameObject.SetActive(true);
+        UICloseTimer();
     }
 }
