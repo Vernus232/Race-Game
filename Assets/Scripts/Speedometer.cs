@@ -7,17 +7,8 @@ public class Speedometer : MonoBehaviour
 {
     [SerializeField] private Text text;
     
-    [SerializeField] private Rigidbody rb;
-
-    private void Start()
-    {
-        //FindCar(GlobalCarData.carIndex);
-    }
-    public void FindCar(int carIndex)
-    {
-        text = FindObjectOfType<Text>(CompareTag("Speedometer"));
-        //rb = FindObjectOfType<CarController>(carIndex == GlobalCarData.carIndex).GetComponent<Rigidbody>();
-    }
+    [HideInInspector] public Rigidbody rb;
+    
 
     // Update is called once per frame
     void FixedUpdate()

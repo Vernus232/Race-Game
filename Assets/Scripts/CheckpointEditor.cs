@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 using UnityEditor.EditorTools;
 
-[EditorTool("Checkpoint Editor",typeof(Checkpoint))]
+[EditorTool("Checkpoint Editor",typeof(RaceCheckpoint))]
 public class CheckpointEditor : EditorTool
 {
     public Texture2D toolIcon;
@@ -22,7 +22,7 @@ public class CheckpointEditor : EditorTool
 
     public override void OnToolGUI(EditorWindow window)
     {
-        Transform targetTransform = ((Checkpoint) target).transform;
+        Transform targetTransform = ((RaceCheckpoint) target).transform;
 
         EditorGUI.BeginChangeCheck();
         Vector3 newPosition = Handles.PositionHandle(targetTransform.position, Quaternion.identity);

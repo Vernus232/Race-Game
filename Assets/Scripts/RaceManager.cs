@@ -10,10 +10,11 @@ public class RaceManager : MonoBehaviour
     private int lapsLeft;
     [HideInInspector] public bool raceStarted = false;
     [HideInInspector] public bool racePassed = false;
-    public Checkpoint[] checkpoints;
+    public RaceCheckpoint[] checkpoints;
     public float timeOnStart;
     public float timeLeft;
-    public StartRace start;
+    public RaceStart start;
+    
     [SerializeField] private Collision carCollision;
     [SerializeField] private Image RaceUI;
     [SerializeField] private Text winText;
@@ -21,6 +22,7 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private Text checkpointCounter;
     [SerializeField] private Text lapCounter;
     [SerializeField] private Text timerView;
+
 
     private void Start() 
     {
@@ -30,15 +32,15 @@ public class RaceManager : MonoBehaviour
 
     public void UpdateRaceParameters()
     {
-        foreach (Checkpoint checkpoint in checkpoints)
+        foreach (RaceCheckpoint checkpoint in checkpoints)
         {
             UpdateRaceParameters(checkpoint);
         }
     }
 
-    private void UpdateRaceParameters(Checkpoint checkpoint)
+    private void UpdateRaceParameters(RaceCheckpoint checkpoint)
     {
-        if (start.raceStartActivated)
+        if (start.raceActivated)
         {
             raceStarted = true;
             OpenUI();
@@ -46,7 +48,7 @@ public class RaceManager : MonoBehaviour
                 {
                     currentCheckpointIndex = 0;
                     UpdateCheckpoints();
-                    checkpoint.checkpointPassed = false;
+                    checkpoint.passed = false;
                     lapsLeft -= 1;
                     UpdateUI();
                     start.lapPassed = false;
@@ -57,6 +59,7 @@ public class RaceManager : MonoBehaviour
                     racePassed = true;
                     TurnOffCheckpoints();
                     UpdateUI();
+                    start.OnRaceCompleted();
                 }
         }
         if (currentCheckpointIndex == 0 & racePassed == false)
@@ -69,9 +72,9 @@ public class RaceManager : MonoBehaviour
 
     public void ResetCheckpoints()
     {
-        foreach (Checkpoint checkpoint in checkpoints)
+        foreach (RaceCheckpoint checkpoint in checkpoints)
         {
-            checkpoint.checkpointPassed = false;
+            checkpoint.passed = false;
             currentCheckpointIndex = 0;
             UpdateCheckpoints();
             UpdateRaceParameters(checkpoint);
@@ -84,7 +87,7 @@ public class RaceManager : MonoBehaviour
         { 
             checkpoints[currentCheckpointIndex].gameObject.SetActive(true);
         }
-        if (checkpoints[currentCheckpointIndex].checkpointPassed)
+        if (checkpoints[currentCheckpointIndex].passed)
         {
             if (currentCheckpointIndex < checkpoints.Length - 1)
             {
@@ -122,6 +125,7 @@ public class RaceManager : MonoBehaviour
 
     private void CloseUI()
     {
+        defeatText.gameObject.SetActive(false);
         winText.gameObject.SetActive(false);
         checkpointCounter.gameObject.SetActive(false);
         RaceUI.gameObject.SetActive(false);
@@ -144,7 +148,7 @@ public class RaceManager : MonoBehaviour
 
     private void TurnOffCheckpoints()
     {
-        foreach (Checkpoint checkpoint in checkpoints)
+        foreach (RaceCheckpoint checkpoint in checkpoints)
         {
             checkpoint.gameObject.SetActive(false);
         }
@@ -173,5 +177,18 @@ public class RaceManager : MonoBehaviour
         start.gameObject.SetActive(true);
         timeLeft = timeOnStart;
         StartCoroutine(UICloseTimer());
+        start.OnRaceFailed();
     }
+
+    public void OnCheckpointEnter(float timeAddup)
+    {
+        timeLeft += timeAddup;
+
+        UpdateRaceParameters();
+        UpdateCheckpoints();
+        UpdateUI();
+        UpdateTimerView();   
+    }  
+
+
 }

@@ -18,7 +18,6 @@ public class CarManagment : MonoBehaviour
         else 
         {   
             CarLoad(GlobalCarData.carIndex);
-            //speedometer.FindCar(GlobalCarData.carIndex);
         }
     }
     public void CarLoad(int index)
@@ -29,6 +28,7 @@ public class CarManagment : MonoBehaviour
             {
                 ccar.gameObject.SetActive(true);
                 ccar.tag = "Player";
+                speedometer.rb = FindObjectOfType<CarController>().GetComponentInChildren<Rigidbody>();
             }
             else
             {
