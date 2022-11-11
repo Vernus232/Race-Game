@@ -31,7 +31,7 @@ public class RaceStart : MonoBehaviour
 
             raceManager.UpdateUI();
             raceManager.UpdateTimerView();
-            raceManager.UpdateRaceParameters();
+            raceManager.UpdateCheckpointParameters();
         }
     }
 
