@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour
 {
+    enum RaceType {Sprint,Circuit}
+    [SerializeField] RaceType raceType;
     [HideInInspector] public bool raceStarted = false;
     [HideInInspector] public bool racePassed = false;
     [HideInInspector] public int currentCheckpointIndex = 0;
     [HideInInspector] public float timeLeft;
 
+    
     public int laps;
     public RaceCheckpoint[] checkpoints;
     public float timeOnStart;
     public RaceStart start;
+    public RaceFinish finish;
     
     [SerializeField] private Collision carCollision;
     [SerializeField] private Image RaceUI;
@@ -24,7 +28,6 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private Text timerView;
 
     private int lapsLeft;
-
 
     private void Start() 
     {
@@ -54,11 +57,11 @@ public class RaceManager : MonoBehaviour
                 // If we have less than one lap, race ends when we're crossing start collider.
                 if (lapsLeft == 1 & start.lapPassed)
                 {
-                    raceStarted = false;
-                    racePassed = true;
-                    TurnOffCheckpoints();
-                    UpdateUI();
-                    start.OnRaceCompleted();
+                    EndRace();
+                }
+                if (raceType == RaceType.Sprint & finish.finishPassed)
+                {
+                    EndRace();
                 }
         }
         // Everything turns off after new lap starts
@@ -96,6 +99,16 @@ public class RaceManager : MonoBehaviour
         StartCoroutine(UICloseTimer());
         start.OnRaceFailed();
     }
+
+    private void EndRace()
+    {
+        raceStarted = false;
+        racePassed = true;
+        TurnOffCheckpoints();
+        UpdateUI();
+        start.OnRaceCompleted();
+        finish.OnRaceCompleted();
+    }
 #endregion
 
 #region Checkpoints
@@ -125,10 +138,19 @@ public class RaceManager : MonoBehaviour
             }
             else
             {
+            if (raceType == RaceType.Circuit)
+            {
                 start.gameObject.SetActive(true);
                 checkpoints[currentCheckpointIndex].gameObject.SetActive(false);
                 currentCheckpointIndex += 1;
             }
+            if (raceType == RaceType.Sprint)
+            {
+                finish.gameObject.SetActive(true);
+                checkpoints[currentCheckpointIndex].gameObject.SetActive(false);
+            }
+            }
+            
         }
     }
 
