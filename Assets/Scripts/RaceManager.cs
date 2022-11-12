@@ -31,6 +31,7 @@ public class RaceManager : MonoBehaviour
 
     private void Start() 
     {
+        
         lapsLeft = laps;
         timeLeft = timeOnStart;
     }
@@ -59,9 +60,12 @@ public class RaceManager : MonoBehaviour
                 {
                     EndRace();
                 }
-                if (raceType == RaceType.Sprint & finish.finishPassed)
+                if (raceType == RaceType.Sprint)
                 {
-                    EndRace();
+                    if (finish.finishPassed)
+                    {
+                        EndRace();
+                    }
                 }
         }
         // Everything turns off after new lap starts
@@ -107,7 +111,10 @@ public class RaceManager : MonoBehaviour
         TurnOffCheckpoints();
         UpdateUI();
         start.OnRaceCompleted();
-        finish.OnRaceCompleted();
+        if (raceType == RaceType.Sprint)
+        {
+            finish.OnRaceCompleted();
+        }
     }
 #endregion
 
