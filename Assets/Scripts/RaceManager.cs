@@ -13,6 +13,7 @@ public class RaceManager : MonoBehaviour
     [HideInInspector] public float timeLeft;
 
     
+    public int moneyForRace;
     public int laps;
     public RaceCheckpoint[] checkpoints;
     public float timeOnStart;
@@ -28,16 +29,18 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private Text timerView;
 
     private int lapsLeft;
+    private PlayerUI playerUI;
 
     private void Start() 
     {
         
         lapsLeft = laps;
         timeLeft = timeOnStart;
+        playerUI = FindObjectOfType<PlayerUI>();
     }
 
 #region Race parameters
-    private void UpdateRaceParameters(RaceCheckpoint checkpoint)
+    public void UpdateRaceParameters(RaceCheckpoint checkpoint)
     {
         // If start was activated...
         if (start.raceActivated)
@@ -111,6 +114,8 @@ public class RaceManager : MonoBehaviour
         TurnOffCheckpoints();
         UpdateUI();
         start.OnRaceCompleted();
+        GlobalPlayerData.money += moneyForRace;
+        playerUI.UpdatePlayerUI();
         if (raceType == RaceType.Sprint)
         {
             finish.OnRaceCompleted();
@@ -126,7 +131,6 @@ public class RaceManager : MonoBehaviour
             checkpoint.passed = false;
             currentCheckpointIndex = 0;
             UpdateCheckpoints();
-            UpdateRaceParameters(checkpoint);
         }
     }
     public void UpdateCheckpoints()
@@ -192,8 +196,14 @@ public class RaceManager : MonoBehaviour
     public void UpdateUI()
     {
         checkpointCounter.text = currentCheckpointIndex.ToString("Current Checkpoint : 0");
-        lapCounter.text = lapsLeft.ToString("Laps 0");
-
+        if (raceType == RaceType.Circuit)
+        {
+            lapCounter.text = lapsLeft.ToString("Laps 0");
+        }
+        else 
+        {
+            lapCounter.text = "Sprint!";
+        }
         if (racePassed == true)
         {
             winText.gameObject.SetActive(true);
