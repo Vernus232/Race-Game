@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour
 {
-    enum RaceType {Sprint,Circuit}
-    [SerializeField] RaceType raceType;
+    public enum RaceType {Sprint,Circuit}
+    [HideInInspector] public RaceType raceType;
     [HideInInspector] public bool raceStarted = false;
     [HideInInspector] public bool racePassed = false;
     [HideInInspector] public int currentCheckpointIndex = 0;
@@ -21,15 +21,10 @@ public class RaceManager : MonoBehaviour
     public RaceFinish finish;
     
     [SerializeField] private Collision carCollision;
-    [SerializeField] private Image RaceUI;
-    [SerializeField] private Text winText;
-    [SerializeField] private Text defeatText;
-    [SerializeField] private Text checkpointCounter;
-    [SerializeField] private Text lapCounter;
-    [SerializeField] private Text timerView;
-
-    private int lapsLeft;
+    
+    [HideInInspector] public int lapsLeft;
     private PlayerUI playerUI;
+    private RaceView raceView;
 
     private void Start() 
     {
@@ -37,25 +32,30 @@ public class RaceManager : MonoBehaviour
         lapsLeft = laps;
         timeLeft = timeOnStart;
         playerUI = FindObjectOfType<PlayerUI>();
+        raceView = FindObjectOfType<RaceView>(true);
     }
 
 #region Race parameters
-    public void UpdateRaceParameters(RaceCheckpoint checkpoint)
+    public void UpdateRaceParameters()
     {
         // If start was activated...
         if (start.raceActivated)
         {
             // Starting race and opening UI.
             raceStarted = true;
-            OpenUI();
+            raceView.OpenUI();
                 // If race have more than one lap, we're reseting every checkpoint after each lap.
                 if (lapsLeft > 1 & start.lapPassed)
                 {
                     currentCheckpointIndex = 0;
                     UpdateCheckpoints();
-                    checkpoint.passed = false;
+                    foreach (RaceCheckpoint checkpoint in checkpoints)
+                    {
+                        checkpoint.passed = false;
+                    }
+                    
                     lapsLeft -= 1;
-                    UpdateUI();
+                    raceView.UpdateUI();
                     start.lapPassed = false;
                 }
                 // If we have less than one lap, race ends when we're crossing start collider.
@@ -74,7 +74,7 @@ public class RaceManager : MonoBehaviour
         // Everything turns off after new lap starts
         if (currentCheckpointIndex == 0 & racePassed == false)
         {
-            checkpoint.gameObject.SetActive(false);
+            ResetCheckpoints();
             start.gameObject.SetActive(false);
             UpdateCheckpoints();
         }
@@ -86,7 +86,7 @@ public class RaceManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             timeLeft -= 1;
-            UpdateTimerView();
+            raceView.UpdateTimerView();
         }
         RaceLost();
     }
@@ -98,12 +98,12 @@ public class RaceManager : MonoBehaviour
 
     private void RaceLost()
     {
-        defeatText.gameObject.SetActive(true);
+        raceView.OnRaceLost();
         StopCoroutine(RaceTimer());
         TurnOffCheckpoints();
         start.gameObject.SetActive(true);
         timeLeft = timeOnStart;
-        StartCoroutine(UICloseTimer());
+        StartCoroutine(raceView.UICloseTimer());
         start.OnRaceFailed();
     }
 
@@ -112,7 +112,8 @@ public class RaceManager : MonoBehaviour
         raceStarted = false;
         racePassed = true;
         TurnOffCheckpoints();
-        UpdateUI();
+        raceView.UpdateUI();
+        StopAllCoroutines();
         start.OnRaceCompleted();
         GlobalPlayerData.money += moneyForRace;
         playerUI.UpdatePlayerUI();
@@ -177,69 +178,11 @@ public class RaceManager : MonoBehaviour
     {
         timeLeft += timeAddup;
 
-        UpdateCheckpointParameters();
         UpdateCheckpoints();
-        UpdateUI();
-        UpdateTimerView();   
+        raceView.UpdateUI();
+        raceView.UpdateTimerView();   
     } 
 
-    public void UpdateCheckpointParameters()
-    {
-        foreach (RaceCheckpoint checkpoint in checkpoints)
-        {
-            UpdateRaceParameters(checkpoint);
-        }
-    }
-#endregion
-
-#region User Interface
-    public void UpdateUI()
-    {
-        checkpointCounter.text = currentCheckpointIndex.ToString("Current Checkpoint : 0");
-        if (raceType == RaceType.Circuit)
-        {
-            lapCounter.text = lapsLeft.ToString("Laps 0");
-        }
-        else 
-        {
-            lapCounter.text = "Sprint!";
-        }
-        if (racePassed == true)
-        {
-            winText.gameObject.SetActive(true);
-            StopAllCoroutines();
-            StartCoroutine(UICloseTimer());
-            timeLeft = 0;
-        }
-    }
-    
-    public void UpdateTimerView()
-    {
-        timerView.text = timeLeft.ToString("Time : 0.00"); 
-    }
-
-    private void CloseUI()
-    {
-        defeatText.gameObject.SetActive(false);
-        winText.gameObject.SetActive(false);
-        checkpointCounter.gameObject.SetActive(false);
-        RaceUI.gameObject.SetActive(false);
-        timerView.gameObject.SetActive(false);
-    }
-
-    private void OpenUI()
-    {
-        checkpointCounter.gameObject.SetActive(true);
-        RaceUI.gameObject.SetActive(true);
-        lapCounter.gameObject.SetActive(true);
-        timerView.gameObject.SetActive(true);
-    }
-
-    private IEnumerator UICloseTimer()
-    {
-        yield return new WaitForSeconds(5);
-        CloseUI();
-    }
 #endregion
 
 }

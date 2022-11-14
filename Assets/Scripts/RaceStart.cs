@@ -7,8 +7,15 @@ public class RaceStart : MonoBehaviour
     public float initialTime;
     [HideInInspector] public bool raceActivated = false;
     [HideInInspector] public bool lapPassed = false;
-    [SerializeField] private RaceManager raceManager;
-
+    public RaceManager raceManager;
+    private RaceView raceView;
+    
+    private void Start()
+    {
+        raceView = FindObjectOfType<RaceView>(true);
+    }
+        
+    
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -27,11 +34,11 @@ public class RaceStart : MonoBehaviour
             {
                 raceActivated = true;
                 raceManager.StartTimer();
+                raceView.raceManager = raceManager;
             }
-
-            raceManager.UpdateUI();
-            raceManager.UpdateTimerView();
-            raceManager.UpdateCheckpointParameters();
+            raceView.UpdateUI();
+            raceView.UpdateTimerView();
+            raceManager.UpdateRaceParameters();
         }
     }
 
