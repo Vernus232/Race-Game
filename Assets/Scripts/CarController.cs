@@ -23,6 +23,10 @@ public class CarController : MonoBehaviour
     public int breakStrengthBoost;
     public int stabilization;
     public int boost;
+    public bool is_2wd_front = false;
+    public bool is_2wd_back = true;
+    public bool is_4wd = false;
+
     private float horizontalInput;
     private float verticalInput;
     private float currentSteerAngle;
@@ -103,23 +107,23 @@ public class CarController : MonoBehaviour
     // Motor
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        if (is_2wd_back){
+            rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
+            rearRightWheelCollider.motorTorque = verticalInput * motorForce;
+        }
+        else if (is_2wd_front){
+            frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
+            frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        }
+        else if (is_4wd){
+            frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
+            frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+            rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
+            rearRightWheelCollider.motorTorque = verticalInput * motorForce;
+        }
+
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            carRb.AddForce(-transform.forward * breakStrengthBoost);
-        }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-          carRb.AddForce(transform.forward * boost);
-        }
-
-        carRb.AddForce(-transform.up * stabilization);
-
     }
 
     // Break

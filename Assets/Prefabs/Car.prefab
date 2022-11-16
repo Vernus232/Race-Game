@@ -119,10 +119,10 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 0.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 1
+    m_ExtremumSlip: 0.5
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &6313355241643216770
@@ -180,10 +180,10 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 0.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 1
+    m_ExtremumSlip: 0.5
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &6313355241795680236
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 6313355241950540790}
   - component: {fileID: 6313355241950540792}
   - component: {fileID: 6313355241950540791}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.36078432}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.50980395}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4255,7 +4255,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5277,7 +5277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6313355242084410898}
   - component: {fileID: 6313355242084410897}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Spot Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5370,7 +5370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6313355242107195364}
   - component: {fileID: 6313355242107195363}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5464,7 +5464,7 @@ GameObject:
   - component: {fileID: 6313355242242310216}
   - component: {fileID: 6313355242242310218}
   - component: {fileID: 6313355242242310217}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5675,7 +5675,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.3254902}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.50980395}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9326,7 +9326,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10346,10 +10346,10 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 0.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 1
+    m_ExtremumSlip: 0.5
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &6313355242899477221
@@ -10451,7 +10451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6313355243058407476
 Transform:
   m_ObjectHideFlags: 0
@@ -10476,9 +10476,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6313355243058407479}
   serializedVersion: 2
-  m_Mass: 500
-  m_Drag: 0.5
-  m_AngularDrag: 0.8
+  m_Mass: 1000
+  m_Drag: 0
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -10506,6 +10506,9 @@ MonoBehaviour:
   breakStrengthBoost: 0
   stabilization: 0
   boost: 0
+  is_2wd_front: 1
+  is_2wd_back: 0
+  is_4wd: 0
   motorForce: 4000
   breakForce: 3000
   maxSteerAngle: 30
@@ -10549,7 +10552,7 @@ GameObject:
   - component: {fileID: 6313355243223938440}
   - component: {fileID: 6313355243223938442}
   - component: {fileID: 6313355243223938441}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10760,7 +10763,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.3254902}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.50980395}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14411,7 +14414,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -15455,7 +15458,7 @@ GameObject:
   - component: {fileID: 6313355243314162574}
   - component: {fileID: 6313355243314162576}
   - component: {fileID: 6313355243314162575}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15666,7 +15669,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.36078432}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.50980395}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19317,7 +19320,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -20374,7 +20377,7 @@ GameObject:
   - component: {fileID: 6313355243597743475}
   - component: {fileID: 6313355243597743477}
   m_Layer: 0
-  m_Name: Main Weight
+  m_Name: Rotation Weight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20388,7 +20391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6313355243597743479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.714, z: 1.012}
+  m_LocalPosition: {x: 0, y: 0.714, z: 1.201}
   m_LocalScale: {x: 0.63, y: 0.45, z: 0.9}
   m_Children: []
   m_Father: {fileID: 6313355243254238606}
@@ -20451,10 +20454,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6313355243597743479}
   serializedVersion: 2
-  m_Mass: 400
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -20514,9 +20517,9 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.7
-    m_ExtremumValue: 0.5
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 1
+    m_ExtremumSlip: 0.5
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
