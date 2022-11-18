@@ -23,9 +23,13 @@ public class InGameMenu : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            OpenMenu();
-        else if (Input.GetKeyDown(KeyCode.Escape) & isPaused)
+        {
+        if (isPaused)
             ContinueGame();
+        else
+            OpenMenu();
+        }
+        
     }
 
     private void OpenMenu()
@@ -45,12 +49,7 @@ public class InGameMenu : MonoBehaviour
 
     public void ContinueGame()
     {
-        header.gameObject.SetActive(false);
-
-        background.gameObject.SetActive(false);
-        continueButton.gameObject.SetActive(false);
-        optionsButton.gameObject.SetActive(false);
-        exitButton.gameObject.SetActive(false);
+        TurnEverythingOff();
 
         Time.timeScale = 1;
 
@@ -77,6 +76,17 @@ public class InGameMenu : MonoBehaviour
         optionsButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
 
+        exitOptions.gameObject.SetActive(false);
+    }
+
+    private void TurnEverythingOff()
+    {
+        header.gameObject.SetActive(false);
+
+        continueButton.gameObject.SetActive(false);
+        optionsButton.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(false);
+        background.gameObject.SetActive(false);
         exitOptions.gameObject.SetActive(false);
     }
 }
