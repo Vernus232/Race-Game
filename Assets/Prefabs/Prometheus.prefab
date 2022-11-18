@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1302090474544745328}
   - component: {fileID: 6949603600344941215}
   - component: {fileID: 8500914945813440414}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4814,7 +4814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5559895450441558144}
   - component: {fileID: 7662598169926346875}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4914,7 +4914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &261786959625234688
 Transform:
   m_ObjectHideFlags: 0
@@ -4969,6 +4969,9 @@ MonoBehaviour:
   breakStrengthBoost: 0
   stabilization: 0
   boost: 0
+  is_2wd_front: 1
+  is_2wd_back: 0
+  is_4wd: 0
   motorForce: 3000
   breakForce: 2500
   maxSteerAngle: 20
@@ -5283,7 +5286,7 @@ GameObject:
   - component: {fileID: 662086678003724143}
   - component: {fileID: 6092378215519474043}
   - component: {fileID: 4992211805004053695}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10376,7 +10379,7 @@ GameObject:
   - component: {fileID: 2377459361608354678}
   - component: {fileID: 2561666288482346558}
   - component: {fileID: 1570933471387563551}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15180,7 +15183,7 @@ GameObject:
   - component: {fileID: 2268515181852702579}
   - component: {fileID: 8106325159216120137}
   - component: {fileID: 4091743971753996723}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20272,7 +20275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8884121697651758591}
   - component: {fileID: 3445793364223770287}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Spot Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

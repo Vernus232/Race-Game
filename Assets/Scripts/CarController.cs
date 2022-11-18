@@ -138,7 +138,7 @@ public class CarController : MonoBehaviour
     // Nitro
     public void Nitro()
     {
-        if (nitroCD == false)
+        if (nitroCD == false & InGameMenu.isPaused == false)
         {
             if (Input.GetKey(KeyCode.LeftShift) & nitroValue > 0)
             {
@@ -208,5 +208,5 @@ public class CarController : MonoBehaviour
         nitroPower = GlobalCarData.nitroPower;
         nitroDecrease = GlobalCarData.nitroDecrease;
     }
- 
+
 }
