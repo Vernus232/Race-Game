@@ -206,7 +206,7 @@ WheelCollider:
     spring: 35000
     damper: 3500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.5
+  m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 1
   m_Mass: 40
   m_WheelDampingRate: 1
@@ -267,7 +267,7 @@ WheelCollider:
     spring: 35000
     damper: 3500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.5
+  m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 1
   m_Mass: 40
   m_WheelDampingRate: 1
@@ -10574,7 +10574,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6313355243058407479}
   serializedVersion: 2
-  m_Mass: 600
+  m_Mass: 800
   m_Drag: 0.2
   m_AngularDrag: 1
   m_UseGravity: 1
@@ -10599,7 +10599,7 @@ MonoBehaviour:
   nitroValue: 0
   nitroPower: 20000
   nitroDecrease: 100
-  incToDec: 4
+  incToDec: 3
   rotationStrength: 0
   breakStrengthBoost: 0
   stabilization: 0
@@ -10609,7 +10609,7 @@ MonoBehaviour:
   is_4wd: 0
   motorForce: 4000
   breakForce: 3000
-  maxSteerAngle: 30
+  maxSteerAngle: 20
   carRb: {fileID: 6313355243058407477}
   frontLeftWheelCollider: {fileID: 6313355241643216768}
   frontRightWheelCollider: {fileID: 6313355241565857809}
@@ -10624,6 +10624,7 @@ MonoBehaviour:
   - {fileID: 6313355243314162576}
   - {fileID: 6313355242242310218}
   - {fileID: 6313355243223938442}
+  backLight: {fileID: 7675939585221157994}
 --- !u!138 &6313355243058407475
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -15479,6 +15480,7 @@ Transform:
   - {fileID: 6478458542904699563}
   - {fileID: 6313355243506572323}
   - {fileID: 4013152006106197747}
+  - {fileID: 371560675250021694}
   m_Father: {fileID: 6313355243058407476}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15543,8 +15545,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8500001, y: 0.93, z: 3.5255718}
-  m_Center: {x: 0, y: 0.8500001, z: -0.06289768}
+  m_Size: {x: 1.8500001, y: 0.87173367, z: 3.8378906}
+  m_Center: {x: 0, y: 0.8791332, z: -0.059814453}
 --- !u!1 &6313355243314162577
 GameObject:
   m_ObjectHideFlags: 0
@@ -20523,3 +20525,84 @@ WheelCollider:
     m_AsymptoteValue: 0.4
     m_Stiffness: 0.7
   m_Enabled: 1
+--- !u!1 &7675939585221157994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371560675250021694}
+  - component: {fileID: 8486065648515805529}
+  - component: {fileID: 5576317905381831376}
+  m_Layer: 0
+  m_Name: Back Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &371560675250021694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675939585221157994}
+  m_LocalRotation: {x: -0.1415924, y: 0, z: 0, w: 0.9899251}
+  m_LocalPosition: {x: 0, y: 1.2876, z: -1.288}
+  m_LocalScale: {x: 0.03, y: 0.1, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 6313355243254238606}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -16.28, y: 0, z: 0}
+--- !u!33 &8486065648515805529
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675939585221157994}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5576317905381831376
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675939585221157994}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b72f443a15b72e74293564be934d3597, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

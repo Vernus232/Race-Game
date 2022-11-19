@@ -54,6 +54,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
     [SerializeField] private ParticleSystem[] nitroParticleSystems;
+    [SerializeField] private GameObject backLight;
     private void Start()
     {
         nitroAddup = (nitroDecrease / incToDec);
@@ -78,6 +79,7 @@ public class CarController : MonoBehaviour
         UpdateWheels();
         TurnRotation();
         Nitro();
+        BackLights();
     }
 
     // Z coordinate rotation
@@ -209,4 +211,11 @@ public class CarController : MonoBehaviour
         nitroDecrease = GlobalCarData.nitroDecrease;
     }
 
+    private void BackLights()
+    {
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space))
+            backLight.gameObject.SetActive(true);
+        else
+            backLight.gameObject.SetActive(false);
+    }
 }

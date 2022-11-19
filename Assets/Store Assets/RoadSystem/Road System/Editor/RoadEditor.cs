@@ -52,7 +52,8 @@ namespace Barmetler.RoadSystem
 			RoadLinkTool.Select(road, selectedAnchorPoint <= road.NumSegments / 2);
 		}
 
-		private void OnSceneGUI()
+        [Obsolete]
+        private void OnSceneGUI()
 		{
 			if (Event.current.type == EventType.MouseDown && Event.current.button == 1)
 				rightMouseDown = true;

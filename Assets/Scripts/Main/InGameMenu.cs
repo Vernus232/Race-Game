@@ -89,4 +89,9 @@ public class InGameMenu : MonoBehaviour
         background.gameObject.SetActive(false);
         exitOptions.gameObject.SetActive(false);
     }
+
+    private void ExitGame()
+    {
+        Application.Quit();
+    }
 }
