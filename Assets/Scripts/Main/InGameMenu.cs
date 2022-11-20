@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class InGameMenu : MonoBehaviour
@@ -18,6 +19,7 @@ public class InGameMenu : MonoBehaviour
 
     [Header("Options menu")]
     [SerializeField] private Button exitOptions;
+    [SerializeField] private Button resetSceneButton;
 
 
     private void Update()
@@ -66,6 +68,7 @@ public class InGameMenu : MonoBehaviour
         // Enable options
         header.text = "Options";
         exitOptions.gameObject.SetActive(true);
+        resetSceneButton.gameObject.SetActive(true);
     }
 
     public void ExitOptions()
@@ -77,6 +80,7 @@ public class InGameMenu : MonoBehaviour
         exitButton.gameObject.SetActive(true);
 
         exitOptions.gameObject.SetActive(false);
+        resetSceneButton.gameObject.SetActive(false);
     }
 
     private void TurnEverythingOff()
@@ -88,10 +92,17 @@ public class InGameMenu : MonoBehaviour
         exitButton.gameObject.SetActive(false);
         background.gameObject.SetActive(false);
         exitOptions.gameObject.SetActive(false);
+        resetSceneButton.gameObject.SetActive(false);
     }
 
-    private void ExitGame()
+    public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene("main");
+        ContinueGame();
     }
 }
